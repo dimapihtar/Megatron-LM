@@ -415,7 +415,7 @@ class TransformerBlock(MegatronModule):
                     (0, global_layer_offset, num_layers)
                 ]  # PP sharding offset for ShardedTensors
             layer_sharded_state_dict = layer.sharded_state_dict(
-                state_dict_prefix, sharded_pp_offset, metadata
+                state_dict_prefix, sharded_pp_offset
             )
             replace_prefix_for_sharding(layer_sharded_state_dict, state_dict_prefix, sharded_prefix)
 
