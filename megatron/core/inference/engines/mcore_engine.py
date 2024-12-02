@@ -68,6 +68,7 @@ class MCoreEngine(AbstractEngine):
             prompt = prompts[i]
             encoder_prompt = encoder_prompts[i] if encoder_prompts is not None else None
             prompt_tokens = self.text_generation_controller.tokenize_prompt(prompt, add_BOS)
+            prompt_tokens.insert(0, 128000)
 
             self.scheduler.add_request(
                 prompt=prompt,
