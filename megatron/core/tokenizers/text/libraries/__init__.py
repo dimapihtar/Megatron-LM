@@ -7,3 +7,4 @@ from megatron.core.tokenizers.text.libraries.null_tokenizer import NullTokenizer
 from megatron.core.tokenizers.text.libraries.sentencepiece_tokenizer import SentencePieceTokenizer
 from megatron.core.tokenizers.text.libraries.sft_tokenizer import SFTTokenizer
 from megatron.core.tokenizers.text.libraries.tiktoken_tokenizer import TikTokenTokenizer
+from megatron.core.tokenizers.text.libraries.gigatoken_tokenizer import GigaTokenTokenizer

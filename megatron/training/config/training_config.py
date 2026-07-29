@@ -679,6 +679,7 @@ class TokenizerConfig:
         "HuggingFaceTokenizer",
         "Llama2Tokenizer",
         "TikTokenizer",
+        "GigaTokenizer",
         "MultimodalTokenizer",
         "NullTokenizer",
         "NullMultimodalTokenizer",

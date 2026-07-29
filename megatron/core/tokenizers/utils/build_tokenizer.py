@@ -12,6 +12,7 @@ SP_TOKENIZERS = ['SentencePieceTokenizer', 'GPTSentencePieceTokenizer', 'Llama2T
 SUPPORTED_TOKENIZERS = [
     'HuggingFaceTokenizer',
     'TikTokenizer',
+    'GigaTokenizer',
     'MultimodalTokenizer',
     'NullTokenizer',
     'NullMultimodalTokenizer',
@@ -84,6 +85,9 @@ def build_tokenizer(args, **kwargs):
         tokenizer_library = 'sft'
         tokenizer_path = args.tokenizer_model
         kwargs['prompt_format'] = args.sft_tokenizer_prompt_format
+    elif args.tokenizer_type == 'GigaTokenizer':
+        tokenizer_library = 'gigatoken'
+        tokenizer_path = args.tokenizer_model
     elif args.tokenizer_type in ['NullTokenizer', 'NullMultimodalTokenizer']:
         tokenizer_library = (
             'null-text' if args.tokenizer_type == 'NullTokenizer' else 'null-multimodal'

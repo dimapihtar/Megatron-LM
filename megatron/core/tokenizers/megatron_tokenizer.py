@@ -25,6 +25,7 @@ TEXT_LIBRARIES = [
     "huggingface",
     "megatron",
     "tiktoken",
+    "gigatoken",
     "byte-level",
     "null-text",
     "sft",
