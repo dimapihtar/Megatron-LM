@@ -34,6 +34,7 @@ def build_tokenizer(args, **kwargs):
     kwargs = {}
     tokenizer_library = None
     tokenizer_path = None
+    kwargs["fast_tokenizer"] = args.fast_tokenizer
     if args.tokenizer_type in MEGATRON_TOKENIZERS:
         tokenizer_library = 'megatron'
         tokenizer_path = args.tokenizer_type

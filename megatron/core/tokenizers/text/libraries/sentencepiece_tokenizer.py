@@ -18,6 +18,13 @@ import torch
 from .abstract_tokenizer import MegatronTokenizerTextAbstract
 from .chat_template import MegatronTokenizerChatTemplate
 
+try:
+    import gigatoken as gt
+
+    HAVE_GIGATOKEN = True
+except (ImportError, ModuleNotFoundError):
+    HAVE_GIGATOKEN = False
+
 
 class SentencePieceTokenizer(MegatronTokenizerTextAbstract, MegatronTokenizerChatTemplate):
     """Sentencepiecetokenizer https://github.com/google/sentencepiece."""
@@ -31,6 +38,7 @@ class SentencePieceTokenizer(MegatronTokenizerTextAbstract, MegatronTokenizerCha
         chat_template: Optional[str] = None,
         trim_spm_separator_after_special_token=True,
         spm_separator='▁',
+        fast_tokenizer: Optional[bool] = False,
     ) -> None:
         """
         Args:
@@ -49,19 +57,29 @@ class SentencePieceTokenizer(MegatronTokenizerTextAbstract, MegatronTokenizerCha
                     We added a parameter to process_asr_tokenizer.py for upcoming models to
                     handle it inbuilt.
             chat_template (Optional[str]): tokenizer chat template in jinja format.
+            fast_tokenizer (Optional[bool]): whether to use GigaToken implementation.
         """
 
         self.chat_template = chat_template
         if not tokenizer_path or not os.path.exists(tokenizer_path):
             raise ValueError(f"tokenizer_path: {tokenizer_path} is invalid")
 
-        if HAVE_SP:
-            self.tokenizer = sentencepiece.SentencePieceProcessor()
+        if fast_tokenizer:
+            if HAVE_GIGATOKEN:
+                self.tokenizer = gt.Tokenizer.from_sentencepiece(tokenizer_path)
+            else:
+                raise ModuleNotFoundError(
+                    "gigatoken library is not installed. "
+                    "Please, install gigatoken to use fast tokenizers: `pip install gigatoken`."
+                )
         else:
-            raise ModuleNotFoundError("sentencepiece library should be installed.")
+            if HAVE_SP:
+                self.tokenizer = sentencepiece.SentencePieceProcessor()
+                self.tokenizer.Load(tokenizer_path)
+            else:
+                raise ModuleNotFoundError("sentencepiece library should be installed.")
 
-        self.tokenizer.Load(tokenizer_path)
-
+        self.fast_tokenizer = fast_tokenizer
         self.original_vocab_size = self.tokenizer.get_piece_size()
         self.vocab_size = self.tokenizer.get_piece_size()
         self.legacy = legacy
