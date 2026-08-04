@@ -4,7 +4,9 @@
 
 import argparse
 import gigatoken as gt
+import time
 
+import multiprocessing
 from multiprocessing import Pool
 
 from megatron.core.datasets import indexed_dataset
@@ -40,7 +42,7 @@ def process_key(args, key, level):
     tokenizer = build_tokenizer(args)  # each process needs its own tokenizer
 
     encoded_docs = tokenizer._tokenizer.tokenizer.tokenizer.encode_files(
-        gt.JsonlFileSource([args.input], field=key)
+        gt.JsonlFileSource([args.input], field=key), parallel=True
     )
 
     bin_file = "{}_{}_{}.bin".format(args.output_prefix, key, level)
@@ -66,4 +68,9 @@ def main():
 
 
 if __name__ == '__main__':
+    start_time = time.perf_counter()
     main()
+    end_time = time.perf_counter()
+
+    elapsed_time = end_time - start_time
+    print(f"Elapsed time: {elapsed_time:.2f} seconds")
