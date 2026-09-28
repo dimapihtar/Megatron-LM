@@ -147,7 +147,7 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
 
         self.use_gigatoken = use_gigatoken
         self.include_special_tokens = include_special_tokens
-        self.original_vocab_size = len(self.tokenizer)
+        #self.original_vocab_size = len(self.tokenizer)
         self.eos_token = eos_token
         self.chat_template = chat_template
         special_tokens_dict = {}
