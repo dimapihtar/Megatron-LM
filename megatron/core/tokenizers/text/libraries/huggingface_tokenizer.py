@@ -166,10 +166,10 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
             special_tokens_dict["sep_token"] = sep_token
         if eos_token is not None:
             special_tokens_dict["eos_token"] = eos_token
-        elif self.tokenizer.sep_token is None and self.tokenizer.eos_token:
-            special_tokens_dict["sep_token"] = self.tokenizer.eos_token
-        elif self.tokenizer.eos_token is None and self.tokenizer.sep_token:
-            special_tokens_dict["eos_token"] = self.tokenizer.sep_token
+        #elif self.tokenizer.sep_token is None and self.tokenizer.eos_token:
+        #    special_tokens_dict["sep_token"] = self.tokenizer.eos_token
+        #elif self.tokenizer.eos_token is None and self.tokenizer.sep_token:
+        #    special_tokens_dict["eos_token"] = self.tokenizer.sep_token
 
         # if the model does not have bos_token but has cls_token,
         # set bos_token = cls_token, and vice versa
