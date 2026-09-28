@@ -109,9 +109,10 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
             # this logic deals with different huggingface tokenizers having different args
             if vocab_file is None:
                 self.tokenizer = AutoTokenizer.from_pretrained(
-                    pretrained_model_name_or_path=tokenizer_path,
-                    use_fast=use_fast,
-                    trust_remote_code=trust_remote_code,
+		    tokenizer_path,
+                    #pretrained_model_name_or_path=tokenizer_path,
+                    #use_fast=use_fast,
+                    #trust_remote_code=trust_remote_code,
                 )
             elif merges_file is None:
                 self.tokenizer = AutoTokenizer.from_pretrained(
