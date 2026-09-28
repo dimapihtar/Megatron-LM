@@ -140,10 +140,10 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
         # Store the tokenizer's existing chat template if the user does not provide
         # a custom chat template. Otherwise, override the default chat template with
         # the user-provided template.
-        if chat_template is None:
-            chat_template = self.tokenizer.chat_template
-        else:
-            self.tokenizer.chat_template = chat_template
+        #if chat_template is None:
+        #    chat_template = self.tokenizer.chat_template
+        #else:
+        #    self.tokenizer.chat_template = chat_template
 
         self.use_gigatoken = use_gigatoken
         self.include_special_tokens = include_special_tokens
