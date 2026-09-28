@@ -173,14 +173,14 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
 
         # if the model does not have bos_token but has cls_token,
         # set bos_token = cls_token, and vice versa
-        if bos_token is not None:
-            special_tokens_dict["bos_token"] = bos_token
-        elif self.tokenizer.bos_token is None and self.tokenizer.cls_token:
-            special_tokens_dict["bos_token"] = self.tokenizer.cls_token
-        if cls_token is not None:
-            special_tokens_dict["cls_token"] = cls_token
-        elif self.tokenizer.cls_token is None and self.tokenizer.bos_token:
-            special_tokens_dict["cls_token"] = self.tokenizer.bos_token
+        #if bos_token is not None:
+        #    special_tokens_dict["bos_token"] = bos_token
+        #elif self.tokenizer.bos_token is None and self.tokenizer.cls_token:
+        #    special_tokens_dict["bos_token"] = self.tokenizer.cls_token
+        #if cls_token is not None:
+        #    special_tokens_dict["cls_token"] = cls_token
+        #elif self.tokenizer.cls_token is None and self.tokenizer.bos_token:
+        #    special_tokens_dict["cls_token"] = self.tokenizer.bos_token
 
         # add additional special tokens (not standard special tokens such as bos, eod, sep)
         if additional_special_tokens is not None:
