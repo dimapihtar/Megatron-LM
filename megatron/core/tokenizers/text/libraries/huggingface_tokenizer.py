@@ -224,7 +224,7 @@ class HuggingFaceTokenizer(MegatronTokenizerTextAbstract):
                 f'{new_tokens_in_vocab} \n will be added to the vocabulary.\n'
                 f'Please resize your model accordingly.',
             )
-        self.add_special_tokens(special_tokens_dict)
+        #self.add_special_tokens(special_tokens_dict)
         self.space_sensitive = self.text_to_tokens('x y') != self.text_to_tokens(
             'x'
         ) + self.text_to_tokens('y')
