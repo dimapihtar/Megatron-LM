@@ -11,7 +11,7 @@ try:
     from tokenizers import Tokenizer as AutoTokenizer
 
     HAVE_TRANSFORMERS = True
-except ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     HAVE_TRANSFORMERS = False
 
 from megatron.core.utils import log_single_rank

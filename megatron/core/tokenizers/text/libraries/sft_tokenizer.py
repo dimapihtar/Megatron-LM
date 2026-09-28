@@ -9,7 +9,7 @@ try:
     import transformers
 
     HAVE_TRANSFORMERS = True
-except ModuleNotFoundError:
+except (ImportError, ModuleNotFoundError):
     HAVE_TRANSFORMERS = False
 
 
