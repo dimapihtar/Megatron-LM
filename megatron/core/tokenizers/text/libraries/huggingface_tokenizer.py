@@ -5,8 +5,10 @@ import logging
 from typing import List, Optional
 
 try:
-    from transformers import AutoTokenizer
+    #from transformers import AutoTokenizer
     from transformers.utils import cached_file
+
+    from tokenizers import Tokenizer as AutoTokenizer
 
     HAVE_TRANSFORMERS = True
 except ModuleNotFoundError:
